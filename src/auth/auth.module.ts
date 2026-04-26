@@ -1,0 +1,22 @@
+import { Module } from '@nestjs/common';
+import { AuthService } from './auth.service';
+import { AuthController } from './auth.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './entities/user.entity';
+import { JwtModule } from '@nestjs/jwt';
+import { AuthGuard } from './auth.guard';
+
+
+@Module({
+  controllers: [AuthController],
+  providers: [AuthService, AuthGuard],
+  exports: [AuthService, AuthGuard], 
+  imports: [
+    TypeOrmModule.forFeature([User]),
+    JwtModule.register({
+      global: true,
+      secret: 'Mi frase secreta para generar el token',
+      signOptions: { expiresIn: '300s' },
+    }),]
+})
+export class AuthModule {}
