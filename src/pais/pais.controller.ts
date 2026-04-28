@@ -10,7 +10,7 @@ import { ResponsePaisDto } from './dto/response-pais.dto';
 export class PaisController {
   constructor(private readonly paisService: PaisService) {}
 
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard) // Ruta protegida
   @ApiOperation({ summary: 'Registrar un nuevo pais' })
   @ApiBody({type: CreatePaisDto})
   @ApiBearerAuth()
@@ -37,8 +37,8 @@ export class PaisController {
     return this.paisService.findOne(+id);
   }
 
-  @UseGuards(AuthGuard)
-  @ApiBearerAuth()
+  @UseGuards(AuthGuard) // Ruta protegida
+  @ApiBearerAuth() 
   @ApiOperation({ summary: 'Actualizar un pais'})
   @ApiBody({type: UpdatePaisDto})
   @ApiOkResponse({type: ResponsePaisDto})
@@ -50,7 +50,7 @@ export class PaisController {
     return this.paisService.update(+id, updatePaisDto);
   }
 
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard) // Ruta protegida
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Eliminar un pais'})
   @ApiOkResponse({ description: 'Cuando el pais se ha eliminado correctamente'})
