@@ -13,8 +13,7 @@ async function bootstrap() {
     .setTitle('CRUD pais')
     .setDescription('API rest para un CRUD aplicando tecnicas de seguridad y autenticacion')
     .setVersion('1.0')
-    .addServer('http://localhost:3000')
-    .addServer('')
+    .addServer('https://practica-iii-jdrd.onrender.com')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory);
