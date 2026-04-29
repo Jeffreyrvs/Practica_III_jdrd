@@ -4,17 +4,22 @@ import { AppService } from './app.service';
 import { PaisModule } from './pais/pais.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+
 
 @Module({
   imports: [
     PaisModule,
-    TypeOrmModule.forRoot({ // Configuracion de la base de datos en la nube
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'practica3-xxjeffrey2006xx-973d.g.aivencloud.com',
-      port: 28168,
-      username: 'avnadmin',
-      password: 'AVNS_ytMsM7uF5Lk4uYQGfi_',
-      database: 'defaultdb',
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT),
+      username: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
       autoLoadEntities: true,
       synchronize: true,
     }),
