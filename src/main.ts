@@ -14,6 +14,7 @@ async function bootstrap() {
     .setDescription('API rest para un CRUD aplicando tecnicas de seguridad y autenticacion')
     .setVersion('1.0')
     .addServer('https://practica-iii-jdrd.onrender.com')
+    .addBearerAuth()
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory);
